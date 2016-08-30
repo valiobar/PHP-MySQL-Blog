@@ -12,17 +12,22 @@
 </aside>
 
 <main id = "posts">
+
     <article>
         <?php foreach ($this->latestposts as $post):?>
+            <div class="col-md-10">
       <h2 class="title"><?=htmlentities($post['title']) ?></h2>
     <div class="date"><i>Posted on</i>
         <?=(new DateTime($post['date']))->format('d-M-Y') ?>
         <i>by </i><?=htmlentities($post['full_name']) ?>
     </div>
 <p class="content"><?=($post['content']) ?></p>
-
+</div>
 <?php endforeach; ?>
     </article>
-
+<script>
+    $(function(){
+        $('as').affix();
+    })</script>
 </main>
 

@@ -80,3 +80,46 @@ body>main:after {
     display: block;
     clear: both;
 }
+.home{
+    float:right;
+    color: #9d9d9d;
+}
+.home a{
+    color: #9d9d9d;
+    padding-top: 15px;
+    padding-bottom: 15px;
+}
+.hello{
+    float:right;
+    color:#9d9d9d;
+}
+#myNavbar{
+    width: 100%;
+}
+.homeNav{
+width: 80%;
+}
+@media screen and (max-device-width:768px ) {
+    #myNavbar {
+width: 80%;
+
+    }
+    .home {
+        padding-top: 10px;
+        padding-bottom: 10px;
+        float: left;
+        text-align: center;
+        margin-left: 10px;
+    }
+    .hello{
+        float: left;
+    }
+}
+.affix {
+    top: 0;
+    width: 100%;
+}
+
+.affix + .tashak {
+    padding-top: 70px;
+}
