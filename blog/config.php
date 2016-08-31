@@ -9,4 +9,4 @@ define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_NAME', 'blog');
-define('IMAGE_ROOT', 'C:\xampp\htdocs\blog\Images');
+define('IMAGE_ROOT', '/blog/content/images/');

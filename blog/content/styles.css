@@ -11,13 +11,30 @@ body>header>a>img, body>header a  {
     font-size: 1.2em;
 }
 
-body>footer {
+body> footer {
     background: #eee;
     padding: 5px;
-    margin: 10px 0;
     text-align: center;
-}
+    bottom: 10px;
+    clear: both;
+    position: absolute;
+    right: 0;
 
+    left: 0;
+
+
+}
+footer {
+    background: #eee;
+    padding: 5px;
+    text-align: center;
+    bottom: 10px;
+    clear: both;
+    position: absolute;
+    right: 0;
+
+    left: 0;
+}
 table th, table td {
     background: #DDD;
     padding: 5px;
@@ -94,14 +111,16 @@ body>main:after {
     color:#9d9d9d;
 }
 #myNavbar{
-    width: 100%;
+    width: 80%;
 }
 .homeNav{
 width: 80%;
+
 }
 @media screen and (max-device-width:768px ) {
     #myNavbar {
-width: 80%;
+
+        width: 80%;
 
     }
     .home {
@@ -115,11 +134,36 @@ width: 80%;
         float: left;
     }
 }
-.affix {
-    top: 0;
+
+.avatar{
+    width: 65px;
+    height: 65px;
+    border-radius: 50%;
+}
+
+hr.tech{
+    background-color:#e0e0e0;height:2em;
+    display: block;
+    margin: 0px;
     width: 100%;
 }
 
-.affix + .tashak {
-    padding-top: 70px;
+.pofile-container{
+    background-color: #46b8da;
+    width    : 50%;
+    height   : 50%;
+    left     : 25%;
+    top      : 250px;
+    margin-left : -100px; /* half of the width  */
+    margin-top  : -100px; /* half of the height */
+}
+.profilePicture{
+    width: 50%;
+    height: 50%;
+}
+.pofile-container span {
+    font-size: 1.6em;
+}
+.pofile-container p {
+    font-size: 1.8em;
 }

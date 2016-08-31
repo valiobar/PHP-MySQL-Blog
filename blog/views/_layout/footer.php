@@ -1,5 +1,6 @@
 
-    <footer>
+    <footer class="footer navbar-fixed-bottom">
+
         (c) Blog System, 2016
     </footer>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

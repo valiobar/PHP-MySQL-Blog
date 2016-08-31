@@ -9,11 +9,13 @@ class UsersController extends BaseController
             $password = $_POST['password'];
             $password_confirm = $_POST['password_confirm'];
             $fullName = $_POST['full_name'];
-            $target_file = IMAGE_ROOT.'\\'. basename($_FILES["image"]["name"]);
-            var_dump($target_file);
+           $description = $_POST['description'];
+           $path = "C:\\xampp\\htdocs\\blog\\content\\images\\";
+            $target_file = $path. basename($_FILES["image"]["name"]);
+            var_dump(basename($_FILES["image"]["name"]));
             $uploadOk = 1;
             $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-
+            var_dump(realpath(dirname(__FILE__)));
             var_dump($target_file);
             if(isset($_POST["Register"])) {
                 $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
@@ -55,17 +57,21 @@ class UsersController extends BaseController
             if ($password != $password_confirm) {
                 $this->setValidationError("password_confirm", "Passoword do not match");
             }
+            if (strlen($description)>350){
+                $this->setValidationError("Abou you",  "TheDEsription is too long it must be less then 350 symbols");
+            }
             if (strlen($password) < 5) {
                 $this->setValidationError("password", "Passoword is invalid");
             }
-            $userId = $this->model->register($username, $password, $fullName,$target_file);
+            $userId = $this->model->register($username, $password, $fullName,basename( $_FILES["image"]["name"]),$description);
+
 
 
             if ($this->formValid()) {
                 if ($userId !== false) {
                     $_SESSION['user_id'] = $userId;
                     $_SESSION['username'] = $username;
-                    $_SESSION['picture']=$target_file;
+                    $_SESSION['picture']= basename($_FILES["image"]["name"]);
                     $this->addInfoMessage("Registration success");
                     $this->redirect("");
                 } else {
@@ -85,7 +91,10 @@ class UsersController extends BaseController
             if ($userId!==false){
                 $_SESSION['username']=$username;
                 $_SESSION['user_id']=$userId;
-                $_SESSION['picture']=$this->model->getUsersImg($userId);
+               if($this->model->getUsersImg($userId)!=null){
+                   $_SESSION['picture']=$this->model->getUsersImg($userId);
+               }
+
 
                 $this->addInfoMessage("Login Successful");
                 $this->redirect("");
@@ -105,4 +114,14 @@ class UsersController extends BaseController
         $this->authorize();
         $this->users=$this->model->getUsers();
     }
+
+    public function profile(int $id){
+    $user = $this->model->getUserById($id);
+        if (!$user){
+            $this->addErrorMessage("Error:Invalid post Id");
+            $this->redirect("");
+        }
+        $this->user = $user;
+    }
+
 }

@@ -14,7 +14,10 @@
 
         <?php foreach ($this->users as $user):?>
         <td><?=$user['id']?></td>
-        <td><?=htmlspecialchars($user['username'])?></td>
+        <td>
+            <a href="<?=APP_ROOT?>/users/profile/<?= $user['id']?>">
+            <?=htmlspecialchars($user['username'])?></td>
+        </a>
         <td><?=htmlspecialchars($user['full_name'])?></td>
 
     </tr>

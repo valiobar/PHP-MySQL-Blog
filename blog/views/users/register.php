@@ -11,9 +11,14 @@
     <input id ="password_confirm" type="password" name="password_confirm"/>
     <div><label for="full_name">Full Name:</label> </div>
     <input id ="full_name" type="text" name="full_name"/>
+
     <div><label for="image">Avatar:</label> </div>
     <input id ="image" type="file" name="image"/>
+    <textarea rows="4" cols="50" name="description"  id="description1" placeholder="Describe yourself in 350 characters...">
+    </textarea>
     <div><input type="submit" value="Register"/></div>
     <a href="<?=APP_ROOT?>/users/login">[Login]</a></div>
+
+
 
 </form>

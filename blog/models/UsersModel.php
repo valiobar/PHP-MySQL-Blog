@@ -16,13 +16,13 @@ class UsersModel extends BaseModel
     }
 
 
-    public  function register(string $username,string $password,string $full_name,string $image)
+    public  function register(string $username,string $password,string $full_name,string $image,string $description)
     {
 
       $password_hash = password_hash($password,PASSWORD_DEFAULT);
-        $statement  = self::$db->prepare("INSERT INTO users(username, password_hash, full_name,image) VALUE (?,?,?,?)");
+        $statement  = self::$db->prepare("INSERT INTO users(username, password_hash, full_name,image,description) VALUE (?,?,?,?,?)");
 
-        $statement->bind_param("ssss",$username,$password_hash,$full_name, $image);
+        $statement->bind_param("sssss",$username,$password_hash,$full_name, $image,$description);
 
         $statement->execute();
 
@@ -42,5 +42,10 @@ class UsersModel extends BaseModel
     {
         $statement = self::$db->query("SELECT image FROM users where id=$id");
         return $statement->fetch_row()[0];
+    }
+
+    function getUserById($id){
+        $statement = self::$db->query("SELECT * FROM users where id=$id");
+        return $statement->fetch_assoc();
     }
 }
