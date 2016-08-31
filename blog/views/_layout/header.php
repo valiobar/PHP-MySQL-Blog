@@ -6,6 +6,7 @@
 
     <link rel="icon" href="<?=APP_ROOT?>/content/images/favicon.ico" />
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?=APP_ROOT?>/content/styles.css" />
     <script src="<?=APP_ROOT?>/content/scripts/jquery-3.0.0.min.js"></script>
     <script src="<?=APP_ROOT?>/content/scripts/blog-scripts.js"></script>
@@ -26,10 +27,12 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
+             <div class="col-md-2">
                 <a class="navbar-brand " href="#">WebSiteName</a>
+                 </div>
             </div>
             <div class=" collapse navbar-collapse" id="myNavbar">
-
+              <div "col-md-8">
                 <ul class="homeNav nav navbar-nav">
                     <li class="active"><a href="<?=APP_ROOT?>/">Home</a></li>
                     <?php if ($this->isLoggedIn) : ?>
@@ -37,16 +40,21 @@
                     <li> <a href="<?=APP_ROOT?>/posts/create">Create Post</a></li>
                     <li>  <a href="<?=APP_ROOT?>/users">Users</a></li>
 
-                    <div class=" home dropdown">
-                        <a class= "dropdown-toggle" data-toggle="dropdown" href="#"><img src="data:image;base64,'.<?php ($_SESSION['picture']); ?>.' " /></a>
+                    <div class=" home dropdown col-md-2">
+                        <a class= "dropdown-toggle" data-toggle="dropdown" href="#">
+                        <?php if ($_SESSION['picture']==null) : ?>
+                            <img src="<?=APP_ROOT?>/Images/avatar.png" width="100" height="100/>
+                            <?php else: ?>
+                            <img src="<?=($_SESSION['picture'])?>" width="100" height="100"/>
+                             <?php endif; ?>
+                        </a>
                         <ul class="dropdown-menu">
                             <li><a href="<?=APP_ROOT?>/users/logout">Logout</a></li>
                             <li><a href="#">Profile</a></li>
                             <li><a href="#">Page 1-3</a></li>
                         </ul>
-                    </div>
 
-                </ul>
+              </div  >
                 <div class="hello ">
                     <span>Hello, <b><?=htmlspecialchars($_SESSION['username'])?></b></span>
                 </div>
