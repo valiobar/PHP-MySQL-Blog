@@ -97,6 +97,6 @@ function cutLongText(string $text, int $maxSize=200, bool $htmlEscape = true) : 
         $append = '&hellip;';
     }
     if ($htmlEscape)
-        $text = htmlspecialchars($text);
+        $text = ($text);
     return $text . $append;
 }

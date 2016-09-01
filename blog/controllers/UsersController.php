@@ -117,11 +117,10 @@ class UsersController extends BaseController
 
     public function profile(int $id){
     $user = $this->model->getUserById($id);
-        if (!$user){
-            $this->addErrorMessage("Error:Invalid post Id");
-            $this->redirect("");
-        }
+       
         $this->user = $user;
+        $userPosts = $this-> model->getUserPosts($id);
+        $this->userPosts = $userPosts;
     }
 
 }

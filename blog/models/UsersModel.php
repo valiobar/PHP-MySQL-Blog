@@ -48,4 +48,9 @@ class UsersModel extends BaseModel
         $statement = self::$db->query("SELECT * FROM users where id=$id");
         return $statement->fetch_assoc();
     }
+    function getUserPosts($id):array
+    {
+        $statement = self::$db->query("SELECT * FROM posts where user_id=$id");
+        return $statement->fetch_all(MYSQLI_ASSOC);
+    }
 }

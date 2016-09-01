@@ -1,9 +1,7 @@
 body>header {
     background: #eee;
     padding: 5px;
-
 }
-
 body>header>a>img, body>header a  {
     display: inline-block;
     vertical-align: middle;
@@ -19,10 +17,7 @@ body> footer {
     clear: both;
     position: absolute;
     right: 0;
-
     left: 0;
-
-
 }
 footer {
     background: #eee;
@@ -74,12 +69,13 @@ ul#messages li.error {
     margin-right: 10px;
 }
 
-body>aside {
+body > aside {
     float: right;
     width: 200px;
     background: #CCC;
     padding: 15px;
     margin-left: 20px;
+
 }
 
 body>aside h2 {
@@ -106,15 +102,16 @@ body>main:after {
     padding-top: 15px;
     padding-bottom: 15px;
 }
-.hello{
-    float:right;
-    color:#9d9d9d;
+.hello {
+    float: right;
+    color: #9d9d9d;
+    margin-top: 12%;
 }
 #myNavbar{
-    width: 80%;
+
 }
 .homeNav{
-width: 80%;
+display: inline-block;
 
 }
 @media screen and (max-device-width:768px ) {
@@ -152,18 +149,80 @@ hr.tech{
     background-color: #46b8da;
     width    : 50%;
     height   : 50%;
-    left     : 25%;
-    top      : 250px;
+    left     : 30%;
+    top      : 100px;
+    padding: 30px;
+    border-radius: 20px;
     margin-left : -100px; /* half of the width  */
     margin-top  : -100px; /* half of the height */
 }
 .profilePicture{
-    width: 50%;
-    height: 50%;
+    width: 80%;
+    height: 80%;
+    border-radius: 50%;
 }
 .pofile-container span {
     font-size: 1.6em;
 }
-.pofile-container p {
+.userInfo {
     font-size: 1.8em;
+}
+.avatartImg :focus,a:hover{
+background: none;
+}
+.avatartImg{
+    float: left;
+}
+@media only screen and (min-device-width: 768px) {
+    .hello span {
+        margin-left: 40px;
+        margin-top: 40px;
+        font-size: 1.4em;
+
+    }
+}
+@media only screen and (max-width: 768px) {
+    .pofile-container
+     {
+        width: 100%
+    }
+}
+@media only screen and (max-width: 768px) {
+    .avatar,.hello
+    {
+        float: left;
+    }
+    .avatar img
+    {
+        float: left;
+    }
+   #myNavbar{
+       width: 100%;
+   }
+}
+.modalBtn{
+    width: 80%;
+}
+.modalBtn2{
+    width: 84%;
+}
+.fade.in {
+
+}
+.myModal{
+    width: 80%;
+}
+.postTitle{
+    background-color: #46b8da;
+    border-radius: 6px;
+    margin: 2px;
+    font-size: 1.2em;
+}
+.btnContainer{
+    margin-top: 4%;
+}
+.coverImg{
+    min-width: 75%;
+    min-height: 50%;
+
 }
