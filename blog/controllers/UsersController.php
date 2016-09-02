@@ -11,45 +11,48 @@ class UsersController extends BaseController
             $fullName = $_POST['full_name'];
            $description = $_POST['description'];
            $path = "C:\\xampp\\htdocs\\blog\\content\\images\\";
+
             $target_file = $path. basename($_FILES["image"]["name"]);
+            $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
             var_dump(basename($_FILES["image"]["name"]));
             $uploadOk = 1;
-            $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-            var_dump(realpath(dirname(__FILE__)));
-            var_dump($target_file);
-            if(isset($_POST["Register"])) {
-                $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
-                if ($check !== false) {
+            $imageName = $username."_avatar.".$imageFileType;
 
-                    $uploadOk = 1;
-                } else {
-                    $this->setValidationError("image", "File is not an image.");
+           if( basename($_FILES["image"]["name"])!=''){
+                if (isset($_POST["Register"])) {
+                    $check = getimagesize($_FILES["fileToUpload"]["tmp_name"]);
+                    if ($check !== false) {
+
+                        $uploadOk = 1;
+                    } else {
+                        $this->setValidationError("image", "File is not an image.");
+                        $uploadOk = 0;
+                    }
+                }
+                if (file_exists($target_file)) {
+                    $this->setValidationError("image", "Sorry, file already exists.");
                     $uploadOk = 0;
                 }
-            }
-            if (file_exists($target_file)) {
-                $this->setValidationError("image",  "Sorry, file already exists.");
-                $uploadOk = 0;
-            }
-            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-                && $imageFileType != "gif" ) {
-                $this->setValidationError("image",  "Sorry, only JPG, JPEG, PNG & GIF files are allowed.");
-                $uploadOk = 0;
-            }
-            if ($uploadOk == 0) {
-                $this->addErrorMessage("Sorry, your file was not uploaded."); 
-
-            } else {
-                var_dump($target_file);
-                if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-                    echo "The file ". basename( $_FILES["image"]["name"]). " has been uploaded.";
-                } else {
-                    $this->setValidationError("image",  "Sorry, there was an error uploading your file."); 
-                   
+                if ($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+                    && $imageFileType != "gif"
+                ) {
+                    $this->setValidationError("image", "Sorry, only JPG, JPEG, PNG & GIF files are allowed.");
+                    $uploadOk = 0;
                 }
+                if ($uploadOk == 0) {
+                    $this->addErrorMessage("Sorry, your file was not uploaded.");
+
+                } else {
+                    var_dump($target_file);
+                    if (move_uploaded_file($_FILES["image"]["tmp_name"], $path.$imageName)) {
+                        echo "The file " . $imageName . " has been uploaded.";
+                    } else {
+                        $this->setValidationError("image", "Sorry, there was an error uploading your file.");
+
+                    }
+                }
+
             }
-                   
-            
 
                 if ($username == '') {
                 $this->setValidationError("username", "Incorrect username");
@@ -63,7 +66,7 @@ class UsersController extends BaseController
             if (strlen($password) < 5) {
                 $this->setValidationError("password", "Passoword is invalid");
             }
-            $userId = $this->model->register($username, $password, $fullName,basename( $_FILES["image"]["name"]),$description);
+            $userId = $this->model->register($username, $password, $fullName,$imageName,$description);
 
 
 
@@ -71,7 +74,8 @@ class UsersController extends BaseController
                 if ($userId !== false) {
                     $_SESSION['user_id'] = $userId;
                     $_SESSION['username'] = $username;
-                    $_SESSION['picture']= basename($_FILES["image"]["name"]);
+                    if (basename($_FILES["image"]["name"])!=''){
+                    $_SESSION['picture']= $imageName;}
                     $this->addInfoMessage("Registration success");
                     $this->redirect("");
                 } else {
@@ -121,6 +125,9 @@ class UsersController extends BaseController
         $this->user = $user;
         $userPosts = $this-> model->getUserPosts($id);
         $this->userPosts = $userPosts;
+        
+        $albums= $this-> model->getUserAlbums($id);
+        $this->albums=$albums;
     }
 
 }

@@ -6,7 +6,7 @@
     <div class="image-container col-md-6">
         <?php
 
-        if ($this->user['image']!=null){
+        if ($this->user['image']!=null&&file_exists(IMAGE_ROOT.$this->user['image'])){
             $image = IMAGE_ROOT.$this->user['image'];
             echo '<img class="profilePicture" src="',$image, '"  />';
         }
@@ -18,19 +18,20 @@
     <div class="col-md-6">
         <h3>User Profile</h3>
         <p class="userInfo"><strong>User name:</strong>&nbsp;<?php echo htmlspecialchars( $this->user['username']);?></p><br><br>
+        <div  class="profileInfo col-md-12">
         <p class="userInfo"><strong>Full name:</strong>&nbsp;<?php if($this->user['full_name']!=null){
             echo htmlspecialchars($this->user['full_name']);
         }else {
             echo "Anonymous User";
         }
             ;?>
-        <p class="userInfo"><strong>About me:</strong>&nbsp;<?php if($this->user['description']!=null){
+        <p  class="userInfo"><strong>About me:</strong>&nbsp;<?php if($this->user['description']!=null){
                 echo htmlspecialchars($this->user['description']);
             }else {
                 echo "I am too shy :) ";
             }
-            ;?>
-
+            ;?></p>
+</div>
     </div>
 <div class="btnContainer col-md-12">
     <div class="col-md-6">
@@ -69,19 +70,27 @@
 
     </div>
     <div class="col-md-6">
-            <button type="button" class="modalBtn btn btn-info btn-lg" data-toggle="modal" data-target="#myModal"><?php echo $this->user['username']."'s Albums" ?></button>
+            <button type="button" class="modalBtn btn btn-info btn-lg" data-toggle="modal" data-target="#myAlbumsModal"><?php echo $this->user['username']."'s Albums" ?></button>
             <!-- Modal -->
-            <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal fade" id="myAlbumsModal" role="dialog">
                 <div class="modal-dialog">
 
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
-                            <h4 class="modal-title">Modal Header</h4>
+                            <h4 class="modal-title"><?php echo $this->user['username']."'s Albums" ?></h4>
                         </div>
                         <div class="modal-body">
-                            <p>Some text in the modal.</p>
+                            <?php foreach ($this->albums as $album):?>
+                                <div style="display: flex" class="col-md-12">
+                                    <div class="postTitle col-md-4">Album:<?php  echo $album['album_name']?> </div>
+                                   <div class="postTitle col-md-6"><i>Posted on</i> <?=(new DateTime($album['date']))->format('d-M-Y') ?> </div>
+                                    <div class="postTitle col-md-2">
+                                    <a href="<?=APP_ROOT?>/images/viewAlbum/<?= $album['id']?>"> <div style="text-align: center" class="postTitle ">View</div></a>
+                            </div>
+                                </div>
+                            <?php endforeach;?>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

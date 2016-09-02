@@ -10,3 +10,4 @@ define('DB_USER', 'root');
 define('DB_PASS', '');
 define('DB_NAME', 'blog');
 define('IMAGE_ROOT', '/blog/content/images/');
+define('ALBUM_IMAGE_ROOT', '/blog/albumImages/');
