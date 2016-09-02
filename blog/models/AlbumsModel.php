@@ -22,8 +22,14 @@ class AlbumsModel extends BaseModel
 
     }
    
+
     public function getAlbumById($id){
         $statement = self::$db->query("SELECT * FROM albums where id=$id");
         return $statement->fetch_assoc();
+    }
+    public function getAlbumImages($id){
+        $statement = self::$db->query("SELECT * FROM images where album_id=$id");
+        return $statement->fetch_all(MYSQLI_ASSOC);
+
     }
 }

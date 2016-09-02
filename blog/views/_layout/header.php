@@ -22,7 +22,7 @@
 <div style="min-height: 150px" class="tashak col-md-12">
     </div>
 <div class="headerHome col-md-12">
-    <nav class=" navbar navbar-inverse navbar-fixed-top sticky col-md-12" >
+    <nav class=" topNav navbar navbar-inverse navbar-fixed-top sticky col-md-12" >
 
             <div class=" col-md-2 navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -31,7 +31,7 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <a class="navbar-brand " href="#">WebSiteName</a>
+                <a class="navbar-brand " href="<?=APP_ROOT?>"><img src="/blog/content/images/blog_images/boat.png" width="80" height="70"></a>
 
             </div>
             <div class=" collapse navbar-collapse" id="myNavbar">
@@ -65,7 +65,7 @@
                             <li><a href="<?=APP_ROOT?>/users/profile/<?= $_SESSION['user_id']?>">
                                     Profile
                                 </a></li>
-                            <li><a href="#">Page 1-3</a></li>
+
                         </ul>
                     </div>
 

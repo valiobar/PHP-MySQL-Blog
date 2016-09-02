@@ -2,7 +2,7 @@
 
 <h1><?= htmlspecialchars($this->title) ?></h1>
 
-<form method="post" enctype="multipart/form-data">
+<form class="reg_form" method="post" enctype="multipart/form-data">
     <div><label for="username">Username:</label> </div>
     <input id ="username" type="text" name="username"/>
     <div><label for="password">Password:</label> </div>

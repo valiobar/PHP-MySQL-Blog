@@ -6,9 +6,16 @@ class AlbumsController extends BaseController
     {
         $this->authorize();
     }
-function create(){
+    function create(){
+
+
+
     if ($this->isPost) {
         $name = $_POST['album_name'];
+      $folderName=&$_SESSION['username'].'_'.$name;
+        if (!file_exists(IMAGE_ROOT.$folderName)) {
+            mkdir(IMAGE_ROOT.$folderName, 0777, true);
+        }
         $path = "C:\\xampp\\htdocs\\blog\\content\\images\\";
         $target_file = $path. basename($_FILES["image"]["name"]);
         $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);        
@@ -67,25 +74,25 @@ function create(){
         if ($this->formValid()) {
            
                 $this->addInfoMessage("Album created success");
-                $this->redirectToUrl(APP_ROOT.'/images'.'/viewAlbum/'.$albumId);
+                $this->redirectToUrl(APP_ROOT.'/albums'.'/viewAlbum/'.$albumId);
             } else {
                 $this->addErrorMessage("Failed to create album");
             }
 
         }
     }
-    
-    function viewAlbum($id){
+    function viewAlbum($id)
+    {
         $album = $this->model->getAlbumById($id);
-        if (!$album){
+        if (!$album) {
             $this->addErrorMessage("Error:Invalid album Id");
             $this->redirect("");
 
         }
-        $this->album=$album;
+        $this->album = $album;
 
-        
 
+        $this->images = $this->model->getAlbumImages($id);
+    }
 
     }
-}

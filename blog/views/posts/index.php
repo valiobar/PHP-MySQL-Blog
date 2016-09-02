@@ -1,28 +1,22 @@
 <?php $this->title = 'Posts';?>
 
-<h1><?=htmlspecialchars($this->title)?></h1>
 
-(d
-   <table>
-       <tr>
-           <th>ID</th>
-           <th>Title</th>
-           <th>Content</th>
-           <th>Date</th>
-           <th>Author ID</th>
-           <th>Action</th>
-       </tr>
-       <tr>
+<?php foreach ($this->posts as $post):?>
+<a class="post-link" href="<?=APP_ROOT?>/home/view/<?= $post['id']?>">   <div class="post-container col-md-12">
+       <div class="post-elemnts col-md-3 ">
+           Title:<br>
+          <strong> <?=htmlspecialchars($post['title'])?></strong>
 
-           <?php foreach ($this->posts as $post):?>
-           <td><?=$post['id']?></td>
-           <td><?=htmlspecialchars($post['title'])?></td>
-           <td><?=cutLongText($post['content'])?></td>
-           <td><?=htmlspecialchars($post['date'])?></td>
-           <td><?=$post['user_id']?></td>
-           <td><a href="<?=APP_ROOT?>/posts/edit/<?=$post['id']?>">[Edit]</a>
-               <a href="<?=APP_ROOT?>/posts/delete/<?=$post['id']?>">[Delete]</a></td>
-       </tr>
-       <?php endforeach;?>
-   </table>
+       </div>
+       <div class="post-elemnts col-md-7 ">
+           Content:<br>
+           <?=htmlspecialchars(cutLongText($post['content']))?>
+
+       </div>
+       <div class="post-elemnts col-md-2 ">
+           Posted on:<br>
+           <?=htmlspecialchars($post['date'])?>
+       </div>
+   </div></a>
+<?php endforeach;?>
 

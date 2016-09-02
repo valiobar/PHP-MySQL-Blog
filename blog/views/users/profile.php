@@ -54,7 +54,16 @@
                            <a href="<?=APP_ROOT?>/home/view/<?= $post['id']?>"><strong>[Read more]</strong></strong></a>
                        </div>
                             <div class="postTitle col-md-3"><i>Posted on</i> <?=(new DateTime($post['DATE']))->format('d-M-Y') ?> </div>
-                        
+
+                            <?php if($_SESSION['user_id'] == $this->user['id']):?>
+                            <div class="post-btn-container col-md-3">
+
+                            <a href="<?=APP_ROOT?>/posts/delete/<?= $post['id']?>">
+                                <button type="button" class=" btn btn-info btn-md" >Delete</button>
+                            </a>
+
+                        </div>
+                            <?php endif; ?>
                         </div>
                     <?php endforeach;?>
 
@@ -82,14 +91,18 @@
                             <h4 class="modal-title"><?php echo $this->user['username']."'s Albums" ?></h4>
                         </div>
                         <div class="modal-body">
+
                             <?php foreach ($this->albums as $album):?>
+                                <?php if( !($album['private'] == 1 &&$_SESSION['user_id'] != $this->user['id']) ):?>
                                 <div style="display: flex" class="col-md-12">
+
                                     <div class="postTitle col-md-4">Album:<?php  echo $album['album_name']?> </div>
                                    <div class="postTitle col-md-6"><i>Posted on</i> <?=(new DateTime($album['date']))->format('d-M-Y') ?> </div>
                                     <div class="postTitle col-md-2">
-                                    <a href="<?=APP_ROOT?>/images/viewAlbum/<?= $album['id']?>"> <div style="text-align: center" class="postTitle ">View</div></a>
+                                    <a href="<?=APP_ROOT?>/albums/viewAlbum/<?= $album['id']?>"> <div style="text-align: center" class="postTitle ">View</div></a>
                             </div>
                                 </div>
+                                <?php endif; ?>
                             <?php endforeach;?>
                         </div>
                         <div class="modal-footer">

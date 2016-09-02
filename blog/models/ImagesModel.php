@@ -1,14 +1,7 @@
 <?php
 class ImagesModel extends BaseModel
 {
-    public function getAlbumById($id){
-        $statement = self::$db->query("SELECT * FROM albums where id=$id");
-        return $statement->fetch_assoc();
-    }
-    public function getAlbumImages($id){
-        $statement = self::$db->query("SELECT image_name FROM images where album_id=$id");
-        return $statement->fetch_row();
-    }
+
     public function addImage(string $imageName,string $description,int $albumId){
         $statement  = self::$db->prepare("INSERT INTO images(image_name,description,album_id) VALUE (?,?,?)");
 

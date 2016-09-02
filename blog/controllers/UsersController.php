@@ -95,9 +95,7 @@ class UsersController extends BaseController
             if ($userId!==false){
                 $_SESSION['username']=$username;
                 $_SESSION['user_id']=$userId;
-               if($this->model->getUsersImg($userId)!=null){
-                   $_SESSION['picture']=$this->model->getUsersImg($userId);
-               }
+
 
 
                 $this->addInfoMessage("Login Successful");

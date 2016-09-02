@@ -2,7 +2,7 @@
 
 <h1 xmlns="http://www.w3.org/1999/html"><?= htmlspecialchars($this->title) ?></h1>
 
-<form method="post">
+<form style="color: black" method="post">
     <div><label for="username">Username:</label> </div>
     <input id ="username" type="text" name="username"/>
     <div><label for="password">Password:</label> </div>
